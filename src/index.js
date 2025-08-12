@@ -24,10 +24,10 @@ function calcWinAgainstStronger(winnerRate, loserRate) {
 }
 
 /**
- * Check input correctness
+ * Check input data correctness
  * @param {number} winnerRate - winner's rating
  * @param {number} loserRate - loser's rating
- * @returns {boolean} true if input data is valid, false otherwise
+ * @returns {boolean} true - if input data is valid, false - if not valid
  */
 function validateRatings(winnerRate, loserRate) {
     if (
@@ -64,7 +64,7 @@ function printResult(winnerRate, loserRate) {
  * Calculate new winner's rating
  * @param {number} winnerRate - winner's rating
  * @param {number} loserRate - loser's rating
- * @returns {number} New rating rounded to 1 decimal or NaN if input is invalid
+ * @returns {number} New rating rounded to 1 decimal or NaN if input data is invalid
  */
 function calcNewRate(winnerRate, loserRate) {
     const isDataValid = validateRatings(winnerRate, loserRate);
@@ -87,9 +87,4 @@ function calcNewRate(winnerRate, loserRate) {
 }
 
 printResult(13, 20);
-printResult('13', 20);
-printResult('вфвфвфв', 20);
-printResult(50, 55);
-printResult(50, 56);
-printResult(0, 56);
-printResult(0, 1);
+printResult(-13, 20);
