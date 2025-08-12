@@ -31,8 +31,6 @@ function calcWinAgainstStronger(winnerRate, loserRate) {
  */
 function validateRatings(winnerRate, loserRate) {
     if (
-        typeof winnerRate !== 'number' ||
-        typeof loserRate !== 'number' ||
         winnerRate < 0 ||
         loserRate < 0 ||
         !Number.isFinite(winnerRate) ||
@@ -86,5 +84,5 @@ function calcNewRate(winnerRate, loserRate) {
     return Number(newWinnerRate.toFixed(1));
 }
 
-printResult(13, 20);
-printResult(-13, 20);
+printResult(14, 20);
+printResult(14, '20');
