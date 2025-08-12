@@ -55,7 +55,7 @@ function printResult(winnerRate, loserRate) {
         );
         return;
     }
-    console.log(`✅ New winner's rating: ${result} points`);
+    console.log(`✅ The winner's new rating: ${result} points`);
 }
 
 /**
