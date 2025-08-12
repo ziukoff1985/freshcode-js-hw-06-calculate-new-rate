@@ -27,44 +27,49 @@ function calcWinAgainstStronger(winnerRate, loserRate) {
  * Check input correctness
  * @param {number} winnerRate - winner's rating
  * @param {number} loserRate - loser's rating
- * @returns {boolean} true - if input data is correct, false - if not
+ * @returns {boolean} true if input data is valid, false otherwise
  */
 function validateRatings(winnerRate, loserRate) {
-    if (winnerRate < 0 || loserRate < 0) return false;
-    // if (typeof winnerRate !== 'number' || typeof loserRate !== 'number')
-    //     return false;
-    if (!Number.isFinite(winnerRate) || !Number.isFinite(loserRate))
+    if (
+        typeof winnerRate !== 'number' ||
+        typeof loserRate !== 'number' ||
+        winnerRate < 0 ||
+        loserRate < 0 ||
+        !Number.isFinite(winnerRate) ||
+        !Number.isFinite(loserRate)
+    ) {
         return false;
+    }
     return true;
 }
 
 /**
  * Print result to console
- * @param {*} winnerRate - winner's rating
- * @param {*} loserRate - loser's rating
- * @returns {void} -
+ * @param {number} winnerRate - winner's rating
+ * @param {number} loserRate - loser's rating
+ * @returns {void}
  */
 function printResult(winnerRate, loserRate) {
     const result = calcNewRate(winnerRate, loserRate);
-    console.log(result);
     if (Number.isNaN(result)) {
-        console.log(`❌ Некоректні дані: ${winnerRate}, ${loserRate}`);
+        console.log(
+            `❌ Entered data is incorrect: (${winnerRate}, ${loserRate}), rating should be a valid number, try again`
+        );
         return;
     }
-    console.log(`✅ Новий рейтинг переможця: ${result} очок`);
-    return;
+    console.log(`✅ New winner's rating: ${result} points`);
 }
 
 /**
  * Calculate new winner's rating
  * @param {number} winnerRate - winner's rating
  * @param {number} loserRate - loser's rating
- * @returns {number} New rating or error message
+ * @returns {number} New rating rounded to 1 decimal or NaN if input is invalid
  */
 function calcNewRate(winnerRate, loserRate) {
-    const error = validateRatings(winnerRate, loserRate);
+    const isDataValid = validateRatings(winnerRate, loserRate);
 
-    if (!error) {
+    if (!isDataValid) {
         return NaN;
     }
 
@@ -78,8 +83,13 @@ function calcNewRate(winnerRate, loserRate) {
             : calcWinAgainstStronger(winnerRate, loserRate);
 
     const newWinnerRate = winnerRate + increase;
-    // console.log(newWinnerRate);
     return Number(newWinnerRate.toFixed(1));
 }
 
 printResult(13, 20);
+printResult('13', 20);
+printResult('вфвфвфв', 20);
+printResult(50, 55);
+printResult(50, 56);
+printResult(0, 56);
+printResult(0, 1);
