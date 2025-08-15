@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Calculates the winner's new rating after a match.
+ * @param {number} winnerRate - winner's current rating
+ * @param {number} loserRate - loser's current rating
+ * @returns {number} - new winner rating
+ */
 function calcNewRate(winnerRate, loserRate) {
     if (
         !Number.isFinite(winnerRate) ||
@@ -14,8 +20,9 @@ function calcNewRate(winnerRate, loserRate) {
     }
 
     if (winnerRate === 0) {
-        console.log(`✅ Winner's new rating: ${loserRate.toFixed(1)} points`);
-        return Number(loserRate.toFixed(1));
+        const newRating = Number(loserRate.toFixed(1));
+        console.log(`✅ Winner's new rating: ${newRating} points`);
+        return newRating;
     }
 
     let increase;
@@ -34,5 +41,9 @@ function calcNewRate(winnerRate, loserRate) {
     return newRating;
 }
 
-console.log(calcNewRate(14, 20));
-console.log(calcNewRate(14, '20'));
+calcNewRate(10, 10);
+calcNewRate(30, 11);
+calcNewRate(30, 10);
+calcNewRate(10, 15);
+calcNewRate(10, '20');
+calcNewRate(0, 15);
